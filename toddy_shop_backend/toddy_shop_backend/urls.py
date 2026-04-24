@@ -22,5 +22,5 @@ urlpatterns = [
     path('api/v1/master/', include('master.urls')),
     path('api/v1/shop/', include('shop.urls')),
     path('api/v1/review/', include('review.urls')),
-    path('api/v1/media/', include('media.urls')),
+    path('api/v1/media/', include('media_assets.urls')),
 ]

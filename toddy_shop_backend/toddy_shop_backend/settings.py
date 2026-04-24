@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'master',
     'shop',
     'review',
-    'media',
+    'media_assets',
 ]
 
 MIDDLEWARE = [
