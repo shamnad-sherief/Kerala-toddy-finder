@@ -16,7 +16,9 @@ https://docs.astral.sh/uv/getting-started/installation
 
 ## Setup
 
-After cloning the repository, run these commands from the backend folder:
+After cloning the repository,
+
+Copy the `.env.example` file to `.env` and update the environment variables as needed after that run these commands from the backend folder:
 
 ```bash
 cd toddy_shop_backend
