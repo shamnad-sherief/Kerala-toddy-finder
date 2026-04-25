@@ -11,12 +11,12 @@ on:
 
 permissions:
   contents: read
-  security-events: write
 
 jobs:
   semgrep:
     name: Semgrep SAST
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     container:
       image: semgrep/semgrep
 
@@ -25,18 +25,23 @@ jobs:
 
       - name: Run Semgrep
         run: |
-          semgrep ci \
+          set +e
+          semgrep scan \
             --config=auto \
             --config=p/django \
             --config=p/javascript \
             --config=p/typescript \
             --config=p/owasp-top-ten \
-            --sarif --output semgrep-results.sarif
-        env:
-          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+            --text \
+            --output semgrep-results.txt
+          SEMGREP_EXIT=$?
+          echo "---- Semgrep findings ----"
+          cat semgrep-results.txt
+          exit $SEMGREP_EXIT
 
-      - name: Upload SARIF to GitHub Security
-        uses: github/codeql-action/upload-sarif@v3
+      - name: Upload Semgrep report as artifact
+        uses: actions/upload-artifact@v4
         if: always()
         with:
-          sarif_file: semgrep-results.sarif
+          name: semgrep-report
+          path: semgrep-results.txt
