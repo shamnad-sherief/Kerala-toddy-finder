@@ -18,7 +18,6 @@ from .models import (
     ReviewCategory,
     ShopCategory,
     Status,
-    User,
     UserRole,
 )
 from .serializers import (
