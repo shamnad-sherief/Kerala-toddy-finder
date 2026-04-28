@@ -11,4 +11,15 @@ dependencies = [
     "djangorestframework-simplejwt>=5.3.1",
     "django-filter>=24.0",
     "Pillow>=11.0.0",
+    "drf-spectacular>=0.29.0",
 ]
+
+[tool.black]
+line-length = 119
+exclude = '''
+/(
+    migrations
+  | venv
+  | \.venv
+)/
+'''
